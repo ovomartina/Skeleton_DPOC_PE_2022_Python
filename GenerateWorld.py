@@ -5,15 +5,13 @@ from Constants import *
 
 def GenerateWorld(width, height):
     """
-    	@width:
-                   Integer describing the width of the map, M.
+    	@type width: integer
+    	@param width: width of the map, M.
 
-               height:
-                   Integer describing the length of the map, N.
+        @type height: integer
+        @param height: height of the map, N.
 
-    	Output arguments:
-
-        	map:
+    	@return map:
                A (M x N) matrix describing the terrain of the map. map(m,n)
                represents the cell at indices (m,n) according to the axes
                specified in the PDF.
@@ -35,7 +33,7 @@ def GenerateWorld(width, height):
     # Generate map
 
     # obstacle parameters
-    obstacleDensity = 6 / 100  # 8 obstacle groups per 100 cells
+    obstacleDensity = 6 / 100  # 6 obstacle groups per 100 cells
     obstacleScalingWidth = 1.0
     obstacleScalingHeight = 0.4
 
@@ -125,7 +123,7 @@ def GenerateWorld(width, height):
                 case 3:
                     base[1] = height - 1
 
-            # check if drop_off is in a free spot
+            # check if base is in a free spot
             if map[base[0], base[1]] == Constants.FREE:
                 break
 
@@ -133,7 +131,6 @@ def GenerateWorld(width, height):
 
         # make map feasible: check that their exists a path from every
         # non-building cell to the pizzeria and drop-off points
-        # feasible = check_map(map, pizzeria) and check_map(map, drop_off)  # Why check both? useless?
         feasible = check_map(map, factory)
     return map
 

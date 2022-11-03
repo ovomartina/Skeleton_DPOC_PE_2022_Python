@@ -1,6 +1,3 @@
-from ComputeTerminalStateIndex import ComputeTerminalStateIndex
-
-
 class Constants:
     M = 19
     N = 11
@@ -33,6 +30,9 @@ class Constants:
     EAST = 3
     STAY = 4
 
+    # Number of possible actions
+    L = 5
+
     # Index of whether the robot is carrying gems
     EMPTY = 0
     GEMS = 1
@@ -40,5 +40,3 @@ class Constants:
     # Index of dimensions
     UPPER = 0
     LOWER = 1
-
-    a = ComputeTerminalStateIndex()

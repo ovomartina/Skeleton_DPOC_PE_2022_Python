@@ -1,12 +1,11 @@
 import scipy.io
 
-import Constants
 from ComputeStageCosts import ComputeStageCosts
-from ComputeTerminalStateIndex import ComputeTerminalStateIndex
-from ComputeTransitionProbabilities import ComputeTransitionProbabilities
+from ComputeTerminalStateIndex import *
+from ComputeTransitionProbabilities import *
 from GenerateWorld import *
 from MakePlots import *
-from Solver import Solver
+from Solution import *
 
 """
 Set to true to generate a random map of size mapSize, else set to false
@@ -28,7 +27,6 @@ else:
     data = scipy.io.loadmat('test.mat')
     map_world = data["map"]
 MakePlots(map_world)
-
 """
  Generate state space
  Generate a (K x 4)-matrix 'stateSpace', where each accessible cell is
@@ -94,10 +92,7 @@ if SolutionImplemented:
     print('Solve stochastic shortest path problem')
 
     # TODO: Question d)
-    solver = Solver(P, G, K, TERMINAL_STATE_INDEX)
-
-    # Select the solver's method you chose to implement
-    [J_opt, u_opt_ind] = solver.linear_programming()
+    [J_opt, u_opt_ind] = Solution(P, G, K, TERMINAL_STATE_INDEX)
 
     if len(J_opt) != K or len(u_opt_ind) != K:
         print('[ERROR] the size of J and u must be K')
@@ -105,7 +100,7 @@ if SolutionImplemented:
 # Plot results
 print('Plot results')
 if SolutionImplemented:
-    MakePlots(map_world, stateSpace, J_opt, u_opt_ind, TERMINAL_STATE_INDEX)
+    MakePlots(map_world, stateSpace, J_opt, u_opt_ind, TERMINAL_STATE_INDEX, "Solution")
 
 # Terminated
 print('Terminated')
